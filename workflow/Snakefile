@@ -1,0 +1,20 @@
+configfile: "config/config.yaml"
+include: "rules/common.smk"
+
+# 获取全局参数
+# print(f"Config: {config}")
+
+processor = SampleProcessor(config)
+samples = processor.sample_names
+
+print(processor.get_all_targets())
+
+rule all:
+    input: processor.get_all_targets()
+
+#load rules
+include: "rules/hicpro.smk"
+include: "rules/format_conversion.smk"
+include: "rules/calculate_IS.smk"
+include: "rules/pair_length_statistic.smk"
+include: "rules/generate_hicpro_config.smk"

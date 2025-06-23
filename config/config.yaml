@@ -1,0 +1,35 @@
+input_dir: ""
+
+
+# Input Reads
+reads:
+  - read1: " "  # Provide read1 file path
+    read2: " "  # Provide read2 file path if PE, else leave empty
+
+#### 上面部分会通过run.sh提供，只用修改下面的部分 ####
+
+# Environment
+conda_env: "hicpro"
+
+Spe: "mm10" # Species: "human" or "mm10" or "mm9"
+
+# Pipeline Configuration Parameters
+## map
+bowtie2_index: "/home_data/home/slst/leixy2023/data/database/mm10/index_bowtie2"
+genomesize: "/home_data/home/slst/leixy2023/data/database/mm10/archive/mm10.chrom.sizes"
+
+enzyme_bed: "/public/slst/home/zhenghui/Denghuanhuan/HiC_analysis/mm10_MboI.bed"
+ligation_site: "GATCGATC"
+
+## contact map
+BIN_SIZE : [20000 40000 150000 500000 1000000]
+
+## format transfer
+hic2juice: "/home_data/home/slst/leixy2023/software/hicpro/bin/utils/hicpro2juicebox.sh"
+juicertool: "/home_data/home/slst/leixy2023/software/juicer/scripts/common/juicer_tools.jar"
+
+## IS
+windows: [1000000]
+#windows: [10000000, 1000000,5000000]
+resolution: 40000
+
