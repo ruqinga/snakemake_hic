@@ -18,8 +18,8 @@ class SampleProcessor:
         """
         从给定的输入目录（inputdir）生成 sample_names，提取其下所有二级目录的名称
         """
-        # 如果没有提供 inputdir 或者输入的 inputdir 无效，sample_names 设为 NA
-        if self.inputdir is None or not os.path.isdir(self.inputdir):
+        # 如果没有提供 inputdir，sample_names 设为 NA
+        if self.inputdir is None:
             self.sample_names = ["NA"]
         else:
             # 获取 inputdir 下的所有子目录（一级目录）

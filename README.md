@@ -8,7 +8,7 @@
 bash workflow/scripts/create_input_link.sh .test/data rawdata/input_ln
 ```
 
-生成config-hicpro.txt
+第一次使用要根据config提供的参数生成config-hicpro.txt
 ```shell
 snakemake generate_hicpro_config
 ```
@@ -22,31 +22,10 @@ nohup snakemake \
     --executor cluster-generic \
     --cluster-generic-submit-cmd "python workflow/scripts/submit_job.py --config config/cluster_config.yaml --seqtype "hicpro" --sample {wildcards} --rule {rule}"  \
     --latency-wait 60 \
-    --jobs 1 \
+    --jobs 5 \
     --use-conda \
     --config input_dir="rawdata/input_ln" \
-    > snakemake_hicpro_rep2.log 2>&1 &
-    
-nohup snakemake \
-    --executor cluster-generic \
-    --cluster-generic-submit-cmd "python workflow/scripts/submit_job.py --config config/cluster_config.yaml --seqtype "hicpro" --sample {wildcards} --rule {rule}"  \
-    --latency-wait 60 \
-    --jobs 2 \
-    --use-conda \
-    --config input_dir="rawdata/inputdir" \
-    > snakemake_hicpro_mESC.log 2>&1 &
-    
-    
-    
-nohup snakemake \
-    --executor cluster-generic \
-    --cluster-generic-submit-cmd "python workflow/scripts/submit_job.py --config config/cluster_config.yaml --seqtype "hicpro" --sample {wildcards} --rule {rule}"  \
-    --latency-wait 60 \
-    --jobs 1 \
-    --use-conda \
-    --config input_dir="rawdata/input_ln_rep1" \
-    > snakemake_hicpro_E11_250526.log 2>&1 &
-    
+    > snakemake_hicpro.log 2>&1 &
 
 ```
 
