@@ -38,9 +38,12 @@ rule hicpro_proc_hic:
         HiC-Pro -c {params.config_hicpro} -i Results/{wildcards.sample}/bowtie_results/bwt2 -o Results/{wildcards.sample} -s proc_hic
         """
 
+# 由于 `merge_stats.sh` 脚本里会根据 `_R1` 和  `_R2` 的中间文件是否存在来确定是否输出 `_Rx.mmapstat` 所以 merged.bam文件得在merge之后删除
 rule hicpro_merge:
     input:
-        bwt2_pairs_bam = "Results/{sample}/hic_results/data/{sample}/{sample}_mm10.bwt2pairs.validPairs"
+        bwt2_pairs_bam = "Results/{sample}/hic_results/data/{sample}/{sample}_mm10.bwt2pairs.validPairs",
+        bwt2_R1_bwt2merged_bam="Results/{sample}/bowtie_results/bwt2/{sample}/{sample}_R1_mm10.bwt2merged.bam",
+        bwt2_R2_bwt2merged_bam="Results/{sample}/bowtie_results/bwt2/{sample}/{sample}_R2_mm10.bwt2merged.bam"
     output:
         validPairs="Results/{sample}/hic_results/data/{sample}/{sample}.allValidPairs"
     conda:
