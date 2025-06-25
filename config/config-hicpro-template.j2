@@ -35,7 +35,8 @@ PAIR2_EXT = _R2
 ## Alignment options
 #######################################################################
 
-MIN_MAPQ = 10
+FORMAT = phred33
+MIN_MAPQ = 0
 
 BOWTIE2_IDX_PATH = {{ config.bowtie2_index }}
 BOWTIE2_GLOBAL_OPTIONS = --very-sensitive -L 30 --score-min L,-0.6,-0.2 --end-to-end --reorder
@@ -55,22 +56,15 @@ GENOME_SIZE = {{ config.genomesize }}
 ALLELE_SPECIFIC_SNP =
 
 #######################################################################
-## Capture Hi-C analysis
-#######################################################################
-
-CAPTURE_TARGET =
-REPORT_CAPTURE_REPORTER = 1
-
-#######################################################################
 ## Digestion Hi-C
 #######################################################################
 
 GENOME_FRAGMENT = {{ config.enzyme_bed }}
 LIGATION_SITE = {{ config.ligation_site }}
-MIN_FRAG_SIZE = 100
-MAX_FRAG_SIZE = 100000
-MIN_INSERT_SIZE = 100
-MAX_INSERT_SIZE = 600
+MIN_FRAG_SIZE =
+MAX_FRAG_SIZE =
+MIN_INSERT_SIZE =
+MAX_INSERT_SIZE =
 
 #######################################################################
 ## Hi-C processing
@@ -88,12 +82,11 @@ RM_DUP = 1
 #######################################################################
 
 BIN_SIZE = {{ config.BIN_SIZE | join(" ") }}
-MATRIX_FORMAT = upper
+MATRIX_FORMAT = complete
 
 #######################################################################
 ## Normalization
 #######################################################################
-
 MAX_ITER = 100
 FILTER_LOW_COUNT_PERC = 0.02
 FILTER_HIGH_COUNT_PERC = 0
